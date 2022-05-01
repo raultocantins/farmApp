@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:farm_app/src/core/exceptions/handle_exceptions.dart';
+import 'package:farm_app/src/core/shared/error_custom.dart';
 
 import 'package:farm_app/src/core/user/domain/entities/user_entity.dart';
 
@@ -28,7 +30,7 @@ abstract class UserGlobalBase with Store {
 
   getUser(BuildContext context) async {
     var uid = _auth.currentUser?.uid;
-    if (uid != null) {
+    if (uid != null && _auth.currentUser!.emailVerified) {
       try {
         var userInf =
             await _firestore.collection("users").doc(uid).get().then((value) {
@@ -52,8 +54,11 @@ abstract class UserGlobalBase with Store {
         }
       } catch (e) {
         changeLoading(false);
-        throw Exception(e);
+        errorCustom(context, HandleExceptionsCustom.handleException(e));
       }
+    } else if (uid != null && !_auth.currentUser!.emailVerified) {
+      changeLoading(false);
+      Navigator.of(context).pushReplacementNamed("/verifyemail");
     } else {
       changeLoading(false);
       Navigator.of(context).pushReplacementNamed("/authentication");

@@ -38,7 +38,7 @@ class HomeButtonCustom extends StatelessWidget {
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
-                color: Theme.of(context).primaryColor.withOpacity(0.3),
+                color: Theme.of(context).primaryColorDark.withOpacity(0.2),
                 spreadRadius: 1,
                 blurRadius: 6,
                 offset: const Offset(2, 3), // changes position of shadow

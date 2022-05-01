@@ -116,7 +116,10 @@ class _LoginPageState extends State<LoginPage> {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               TextButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.of(context)
+                                        .pushNamed('/resetpassword');
+                                  },
                                   child: const Text(
                                     "Esqueceu a senha?",
                                     style: TextStyle(color: Color(0XFF25C586)),
@@ -134,14 +137,8 @@ class _LoginPageState extends State<LoginPage> {
                           width: size.width * 0.9,
                           child: TextButton(
                             onPressed: () async {
-                              try {
-                                await auth.loginUser(context,
-                                    email: email.text, password: password.text);
-                              } catch (e) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(content: Text(e.toString())),
-                                );
-                              }
+                              await auth.loginUser(context,
+                                  email: email.text, password: password.text);
                             },
                             child: userGlobal.isLoading
                                 ? const SizedBox(

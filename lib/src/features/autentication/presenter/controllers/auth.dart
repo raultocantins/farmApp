@@ -1,3 +1,4 @@
+import 'package:farm_app/src/core/shared/error_custom.dart';
 import 'package:farm_app/src/core/user/data/models/user_model.dart';
 
 import 'package:farm_app/src/core/user/user_global.dart';
@@ -37,7 +38,7 @@ abstract class AuthBase with Store {
     } catch (e) {
       _userGlobal.changeLoading(false);
 
-      throw Exception(e);
+      errorCustom(context, e.toString());
     }
   }
 
@@ -50,7 +51,7 @@ abstract class AuthBase with Store {
     } catch (e) {
       _userGlobal.changeLoading(false);
 
-      throw Exception(e);
+      errorCustom(context, e.toString());
     }
   }
 
@@ -69,7 +70,20 @@ abstract class AuthBase with Store {
       _userGlobal.getUser(context);
     } catch (e) {
       _userGlobal.changeLoading(false);
-      throw Exception(e);
+      errorCustom(context, e.toString());
+    }
+  }
+
+  resetPassword(BuildContext context, {required String email}) async {
+    _userGlobal.changeLoading(true);
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+
+      Navigator.of(context).pushReplacementNamed('/resetpassconfirm');
+      _userGlobal.changeLoading(false);
+    } catch (e) {
+      _userGlobal.changeLoading(false);
+      errorCustom(context, e.toString());
     }
   }
 

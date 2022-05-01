@@ -10,7 +10,7 @@ class LoginUserWithEmailAndPasswordDatasourceImpl
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
     } catch (e) {
-      throw Exception(e);
+      throw e as Exception;
     }
   }
 }

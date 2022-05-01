@@ -29,7 +29,7 @@ class _SplashPageState extends State<SplashPage> {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-        backgroundColor: Theme.of(context).backgroundColor,
+        backgroundColor: Colors.white,
         body: SizedBox(
           width: size.width,
           height: size.height,
@@ -39,15 +39,6 @@ class _SplashPageState extends State<SplashPage> {
             children: [
               Container(
                 decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Theme.of(context).primaryColor.withOpacity(0.3),
-                        spreadRadius: 1,
-                        blurRadius: 6,
-                        offset:
-                            const Offset(2, 3), // changes position of shadow
-                      ),
-                    ],
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(16)),
                 padding: const EdgeInsets.all(10),
@@ -61,7 +52,7 @@ class _SplashPageState extends State<SplashPage> {
               const SizedBox(
                 height: 20,
               ),
-              Text("Kisaan",
+              Text("FarmApp",
                   style: TextStyle(
                       color: Theme.of(context).primaryColor,
                       fontSize: 30,

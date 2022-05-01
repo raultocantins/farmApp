@@ -2,6 +2,9 @@ import 'package:farm_app/src/features/autentication/presenter/pages/authenticati
 import 'package:farm_app/src/features/autentication/presenter/pages/register_farm_page.dart';
 import 'package:farm_app/src/features/autentication/presenter/pages/register_page.dart';
 import 'package:farm_app/src/features/autentication/presenter/pages/login_page.dart';
+import 'package:farm_app/src/features/autentication/presenter/pages/reset_password_page.dart';
+import 'package:farm_app/src/features/autentication/presenter/pages/reset_pass_success_page.dart';
+import 'package:farm_app/src/features/autentication/presenter/pages/verify_email_page.dart';
 import 'package:farm_app/src/features/equipment/presenter/equipment_page.dart';
 import 'package:farm_app/src/features/financialservices/presenter/financial_service_page.dart';
 import 'package:farm_app/src/features/home/presenter/page/home_page.dart';
@@ -20,5 +23,8 @@ Map<String, Widget Function(BuildContext)> routers = {
   '/equipment': (context) => const EquipmentPage(),
   '/weather': (context) => const WeatherPage(),
   '/farmmain': (context) => const FarmMainPage(),
-  '/registerfarm': (context) => const RegisterFarm()
+  '/registerfarm': (context) => const RegisterFarm(),
+  '/resetpassword': (context) => const ResetPassword(),
+  '/resetpassconfirm': (context) => const ResetPassSuccess(),
+  '/verifyemail': (context) => const VerifyEmail()
 };

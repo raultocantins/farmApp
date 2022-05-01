@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
   AuthGlobal auth = GetIt.I<AuthGlobal>();
   UserGlobal userGlobal = GetIt.I<UserGlobal>();
   FirebaseAuth firebase = FirebaseAuth.instance;
-
+  var scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   void initState() {
     super.initState();
@@ -41,16 +41,163 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
+      key: scaffoldKey,
+      backgroundColor: Colors.white,
+      drawer: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Theme.of(context).primaryColor,
+          child: const Icon(Icons.arrow_forward, color: Colors.white),
+          onPressed: () {
+            scaffoldKey.currentState!.openEndDrawer();
+          },
+        ),
+        body: SafeArea(
+          child: SizedBox(
+            width: size.width,
+            height: size.height,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Column(
+                    children: [
+                      SizedBox(
+                        height: 200,
+                        width: size.width,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Stack(children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(100)),
+                                    child: Image.asset(
+                                      'assets/elon.jpeg',
+                                      fit: BoxFit.cover,
+                                      height: 150,
+                                      width: 150,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Positioned(
+                                height: size.height * 0.2,
+                                width: size.width,
+                                child: const Icon(
+                                  Icons.photo_camera,
+                                  color: Colors.white38,
+                                  size: 25,
+                                ),
+                              )
+                            ]),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          userGlobal.usuario!.name,
+                          style: const TextStyle(
+                            fontSize: 24,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                    child: ListTile(
+                      title: const Text('Email'),
+                      subtitle: Text(userGlobal.usuario!.email),
+                      leading: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(Icons.email),
+                        ],
+                      ),
+                      trailing: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(Icons.edit),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                    child: ListTile(
+                      title: const Text('Plano'),
+                      subtitle: Text(userGlobal.usuario!.plano),
+                      leading: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(Icons.person),
+                        ],
+                      ),
+                      trailing: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(Icons.edit),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                    child: ListTile(
+                      title: const Text('Telefone'),
+                      subtitle: const Text('63992086480'),
+                      leading: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(Icons.phone),
+                        ],
+                      ),
+                      trailing: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(Icons.edit),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                    child: ListTile(
+                      title: const Text('Senha'),
+                      subtitle: const Text('*******'),
+                      leading: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(Icons.password),
+                        ],
+                      ),
+                      trailing: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(Icons.edit),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+      drawerEnableOpenDragGesture: true,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).backgroundColor,
+        backgroundColor: Colors.white,
         elevation: 0,
         actions: [
-          IconButton(
-              splashRadius: 1,
-              onPressed: () {},
-              color: Theme.of(context).primaryColorDark,
-              icon: const Icon(Icons.settings)),
           IconButton(
               splashRadius: 1,
               onPressed: () {},
@@ -68,7 +215,9 @@ class _HomePageState extends State<HomePage> {
           splashRadius: 1,
           color: Theme.of(context).primaryColor,
           icon: const Icon(Icons.auto_awesome_mosaic_rounded),
-          onPressed: () {},
+          onPressed: () {
+            scaffoldKey.currentState!.openDrawer();
+          },
         ),
       ),
       body: SizedBox(
@@ -187,7 +336,7 @@ class _HomePageState extends State<HomePage> {
                   height: 350,
                   width: 13,
                   decoration: BoxDecoration(
-                    color: Theme.of(context).highlightColor,
+                    color: Theme.of(context).primaryColor,
                     borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(20),
@@ -196,7 +345,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Container(
                     decoration: BoxDecoration(
-                        color: Theme.of(context).highlightColor,
+                        color: Theme.of(context).primaryColor,
                         borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(20),
                         )),
