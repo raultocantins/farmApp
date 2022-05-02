@@ -36,7 +36,7 @@ class _ResetPassSuccess extends State<ResetPassSuccess> {
                       Padding(
                         padding: EdgeInsets.all(14.0),
                         child: Text(
-                          "Enviamos uma nova senha e instruções para senha email.",
+                          "Enviamos uma nova senha e instruções para o seu email.",
                           textAlign: TextAlign.center,
                           style: TextStyle(fontSize: 14, color: Colors.black26),
                         ),
