@@ -74,10 +74,10 @@ abstract class AuthBase with Store {
     }
   }
 
-  resetPassword(BuildContext context, {required String email}) async {
+  resetPassword(BuildContext context, {required String userEmail}) async {
     _userGlobal.changeLoading(true);
     try {
-      await _auth.sendPasswordResetEmail(email: email);
+      await _auth.sendPasswordResetEmail(email: userEmail);
 
       Navigator.of(context).pushReplacementNamed('/resetpassconfirm');
       _userGlobal.changeLoading(false);

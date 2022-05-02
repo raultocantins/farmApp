@@ -138,7 +138,8 @@ class _LoginPageState extends State<LoginPage> {
                           child: TextButton(
                             onPressed: () async {
                               await auth.loginUser(context,
-                                  email: email.text, password: password.text);
+                                  email: email.text.trim(),
+                                  password: password.text.trim());
                             },
                             child: userGlobal.isLoading
                                 ? const SizedBox(

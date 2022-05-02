@@ -78,7 +78,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                       child: TextButton(
                         onPressed: () async {
                           auth.resetPassword(context,
-                              email: resetController.value.text);
+                              userEmail: resetController.value.text.trim());
                         },
                         child: Observer(builder: (context) {
                           return userGlobal.isLoading

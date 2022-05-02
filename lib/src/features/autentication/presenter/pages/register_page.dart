@@ -159,8 +159,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                       confirmpassword.value.text) {
                                 try {
                                   await auth.registerUser(context,
-                                      email: email.text,
-                                      password: password.text);
+                                      email: email.text.trim(),
+                                      password: password.text.trim());
                                 } catch (e) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(content: Text(e.toString())),

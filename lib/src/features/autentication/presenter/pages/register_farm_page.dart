@@ -66,9 +66,9 @@ class _RegisterFarmState extends State<RegisterFarm> {
     });
   }
 
-  choosePlan(Planos plano) {
+  choosePlan(Planos newplano) {
     setState(() {
-      plano = plano;
+      plano = newplano;
     });
     nextStep();
   }
@@ -780,8 +780,8 @@ class _RegisterFarmState extends State<RegisterFarm> {
                 }),
                 onPressed: () {
                   auth.newUsuario(context,
-                      name: userName.value.text,
-                      farmName: farmName.value.text,
+                      name: userName.value.text.trim(),
+                      farmName: farmName.value.text.trim(),
                       plano: plano.toString());
                 },
               )),
